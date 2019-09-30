@@ -1,0 +1,49 @@
+syntax = "proto3";
+package expense;
+option go_package = "expensepb";
+service ExpenseService {
+    rpc CreateExpense(CreateReq) returns (CreateRes);
+    rpc ReadExpense(ReadReq) returns (ReadRes);
+    rpc UpdateExpense(UpdateReq) returns (UpdateRes);
+    rpc DeleteExpense(DeleteReq) returns (DeleteRes);
+    rpc ListExpenses(ListReq) returns (stream ListRes);
+}
+message Expense {
+    string id = 1;
+    string description = 2;
+    string typeofaccount = 3;
+    string amount= 4;
+}
+
+message CreateReq {
+    Expense exp = 1;
+}
+
+message CreateRes {
+    Expense exp = 1;
+}
+message ReadReq {
+    string id = 1;
+}
+message ReadRes {
+    Expense exp = 1;
+}
+message UpdateReq {
+    Expense exp = 1;
+}
+message UpdateRes {
+    Expense exp = 1;
+}
+message DeleteReq {
+    string id = 1;
+}
+message DeleteRes {
+    bool success = 1;
+}
+message ListReq {
+
+}
+message ListRes {
+    Expense exp = 1;
+}
+
